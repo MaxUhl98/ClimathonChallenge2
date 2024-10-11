@@ -1,0 +1,25 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100vw;
+
+    //make background color transparent
+    background-color: rgba(0, 0, 0, 0.11);
+    backdrop-filter: blur(10px);
+    --webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.links {
+    margin-right: 50px;
+    i {
+        margin-right: 20px;
+    }
+}

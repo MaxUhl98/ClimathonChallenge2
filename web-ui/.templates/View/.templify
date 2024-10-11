@@ -1,0 +1,8 @@
+# This file is used by templify to generate new files from this template.
+# You can use the following variables in this file:
+# description:The description of the template
+# path:The path of the template
+description:A new View
+path:src/views/$$name.pascal$$View
+
+.source:https://github.com/cophilot/templify-vault/tree/main/React-ts/View
