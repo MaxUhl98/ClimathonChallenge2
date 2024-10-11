@@ -24,6 +24,10 @@ Backend is in the `backend` folder. To start a dev server:
 flask run
 ```
 
+Backend is deployed to Heroku at:
+
+https://climathon2024-8c208f1487fd.herokuapp.com
+
 Get hourly temparature between January 1st and 2nd:
 
-`http://127.0.0.1:5000/timeline?startDay=2018-01-01&endDay=2018-01-02&timeResolution=hourly&feature=temparature`
+`/timeline?startDay=2018-01-01&endDay=2018-01-02&timeResolution=hourly&feature=temparature`
