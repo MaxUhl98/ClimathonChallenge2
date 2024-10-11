@@ -1,0 +1,17 @@
+#?:
+
+# This file is used by templify to generate new files from this template.
+
+# You can use the following variables in this file:
+
+# description: The description of the template
+
+# path: The path where the file should be generated based on the project root (you can also use placeholders here)
+
+# var: Define a variable placeholder that can be used in the file content
+
+# IMPORTANT: Lines starting with a . are auto generated and should not be changed.
+
+description:
+
+path:src/graph

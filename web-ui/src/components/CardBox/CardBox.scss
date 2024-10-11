@@ -1,0 +1,29 @@
+.card-box {
+    width: 29vw;
+    margin-right: 1.5vw;
+    border: 3px solid #ffffff;
+    background-color: #1c2a3f;
+    border-radius: 10px;
+    padding: 1vw;
+    height: 200px;
+    h1 {
+        width: 100%;
+        text-align: center;
+    }
+    .icon {
+        i {
+            font-size: 50px;
+        }
+    }
+    p {
+        display: none;
+    }
+
+    &:hover {
+        background-color: #2c3a4f;
+        cursor: pointer;
+        p {
+            display: block;
+        }
+    }
+}

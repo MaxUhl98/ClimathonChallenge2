@@ -9,7 +9,9 @@ import './Header.scss';
 function Header() {
     return (
         <div className="header">
-            <h1>CC#2</h1>
+            <h1 className="logo">
+                ClimateLens<i className="bi bi-search"></i>
+            </h1>
             <div className="links">
                 <a href="/">
                     <i className="bi bi-house"></i>

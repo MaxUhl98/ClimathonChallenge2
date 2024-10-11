@@ -55,7 +55,45 @@ i {
 }
 
 .btn {
-    font-size: 1.5rem;
+    font-size: 20px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        background-color: #005194;
+    }
+}
+
+select {
+    font-size: 20px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        background-color: #005194;
+    }
+}
+
+input {
+    font-size: 20px;
     background-color: transparent;
     border: 2px solid white;
     color: white;
@@ -87,4 +125,18 @@ i {
 
 .mb {
     margin-bottom: 20px;
+}
+
+.ver {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hor {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }

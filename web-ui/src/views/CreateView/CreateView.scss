@@ -4,3 +4,23 @@
     margin-top: -60px;
     opacity: 0;
 }
+.row {
+    width: 33%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.zoomLevelSelect {
+    .row {
+        select {
+            margin-left: 20px;
+        }
+    }
+}
+
+.error-msg {
+    color: red;
+    font-style: bold;
+}
