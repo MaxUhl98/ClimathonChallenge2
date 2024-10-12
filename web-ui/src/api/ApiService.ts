@@ -1,7 +1,19 @@
 import axios from 'axios';
 
 export default class ApiService {
-    static host = import.meta.env.VITE_API_URL;
+    static host = 'http://localhost:5002';
+    //static host = import.meta.env.VITE_API_URL;
+
+    static upload(file: File): Promise<void> {
+        const url = `${this.host}/upload`;
+        const formData = new FormData();
+        formData.append('file', file);
+        return axios.post(url, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+    }
 
     static async test() {
         const url = `https://httpbin.org/get`;

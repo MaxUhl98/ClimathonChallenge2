@@ -10,7 +10,6 @@ function BarGraph({
     const option = {
         xAxis: {
             type: 'category',
-            data: xTicks,
         },
         yAxis: {
             type: 'value',

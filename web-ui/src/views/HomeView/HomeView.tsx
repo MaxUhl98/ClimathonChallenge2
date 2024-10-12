@@ -12,7 +12,7 @@ function HomeView() {
     const navigate = useNavigate();
     return (
         <div className="content">
-            <h1>Welcome to the ClimateLens!</h1>
+            <h1>Welcome to ClimateLens!</h1>
             <p>
                 ClimateLens is a tool to get more information of your clima
                 data!
@@ -24,8 +24,8 @@ function HomeView() {
                 <CardBox icon="bi-body-text" heading="Fill">
                     Fill your the gaps of your clima data set!
                 </CardBox>
-                <CardBox icon="bi-search" heading="Get more information">
-                    Get more information of your clima data!
+                <CardBox icon="bi-graph-up" heading="Visualize">
+                    Visualize your clima data in a better way!
                 </CardBox>
             </div>
             <button

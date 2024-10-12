@@ -4,6 +4,7 @@ import Spinner from '../../components/Spinner/Spinner';
 import ZoomLevel from '../../utils/ZoomLevel';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { useNavigate } from 'react-router-dom';
+import ApiService from '../../api/ApiService';
 
 /**
  * This is the CreateView
@@ -25,6 +26,7 @@ function CreateView() {
         const file = e.target.files?.[0] || null;
         setSelectedFile(file);
         setShowSpinner(true);
+        ApiService.upload(file as File);
         setTimeout(() => {
             setShowSpinner(false);
             setZoomLevels(['Daily', 'Hourly']);
@@ -107,9 +109,7 @@ function SelectZoomLevel({ x, y }: { x: string; y: string }) {
     return (
         <div className="zoomLevelSelect mt">
             <div className="row">
-                <p>
-                    <b>X:</b>
-                </p>
+                <p>Current Zoom Level:</p>
                 <select>
                     {ZoomLevel.getLevelDispalys().map((display: string) => (
                         <option
@@ -122,9 +122,7 @@ function SelectZoomLevel({ x, y }: { x: string; y: string }) {
                 </select>
             </div>
             <div className="row">
-                <p>
-                    <b>Y:</b>
-                </p>
+                <p>Wanted Zoom Level:</p>
                 <select>
                     {ZoomLevel.getLevelDispalys().map((display: string) => (
                         <option
