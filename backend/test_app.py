@@ -26,10 +26,10 @@ def client():
 def fake_file(content):
   io.BytesIO(content.encode('utf-8'))
 
-# /timeline
+# /zoom
 
 def test_no_file(client):
-    response = client.post('/timeline')
+    response = client.post('/zoom')
     assert response.status_code == 400
     assert b'No file given' in response.data
 
@@ -39,7 +39,7 @@ def test_wrong_file_format(client):
       'file': (fake_file(content), 'test.txt') #(io.BytesIO(content.encode('utf-8')), 'test.txt')
     }
 
-    response = client.post('/timeline', content_type='multipart/form-data', data=data)
+    response = client.post('/zoom', content_type='multipart/form-data', data=data)
 
     assert response.status_code == 400
     assert b'Invalid file type' in response.data
@@ -48,7 +48,7 @@ def test_saves_uploaded_file(client):
     csv_content = "Name,Age,City\nAlice,30,New York\nBob,25,Los Angeles"
 
     # Send POST request to the upload route
-    response = client.post('/timeline', content_type='multipart/form-data', data={'file': (fake_file(csv_content), 'test.csv')})
+    response = client.post('/zoom', content_type='multipart/form-data', data={'file': (fake_file(csv_content), 'test.csv')})
 
     # Assert that the upload was successful
     assert response.status_code == 200
@@ -65,7 +65,7 @@ def test_saves_uploaded_file(client):
 #       'file': (fake_file(csv_content), 'test.csv'),
 #       'feature': 'tas',
 #     }
-#     response = client.post('/timeline', 
+#     response = client.post('/zoom', 
 #                            content_type='multipart/form-data',
 #                            data=form_data)
 

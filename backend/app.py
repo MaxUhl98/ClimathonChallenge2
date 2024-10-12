@@ -24,7 +24,7 @@ def allowed_file(filename):
 def hello_world():
     return "<p>Hello, World!</p>"
 
-@app.route("/timeline", methods=['POST'])
+@app.route("/zoom", methods=['POST'])
 def post_timeline():
 
 
