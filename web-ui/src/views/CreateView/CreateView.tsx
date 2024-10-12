@@ -28,7 +28,7 @@ function CreateView() {
         setTimeout(() => {
             setShowSpinner(false);
             setZoomLevels(['Daily', 'Hourly']);
-        }, 2000);
+        }, 1000);
     };
 
     const start = () => {
@@ -45,7 +45,7 @@ function CreateView() {
 
     return (
         <div className="content">
-            <h1>Welcome to the CreateView!</h1>
+            <h1>Create a new DataSet</h1>
             {selectedFile && (
                 <div>
                     <p>
@@ -68,13 +68,22 @@ function CreateView() {
             {showSpinner ? (
                 <Spinner />
             ) : (
-                <SelectZoomLevel x={zoomLevels[0]} y={zoomLevels[1]} />
+                <>
+                    <SelectZoomLevel x={zoomLevels[0]} y={zoomLevels[1]} />
+                    <div className="row">
+                        <p>Location: </p>
+                        <select>
+                            <option value="1">Station 1</option>
+                            <option value="2">Station 2</option>
+                            <option value="3">Station 3</option>
+                        </select>
+                    </div>
+                    <div className="row">
+                        <p>Parameter: </p>
+                        <input type="text" className="ml" />
+                    </div>
+                </>
             )}
-
-            <div className="row">
-                <p>Parameter: </p>
-                <input type="text" className="ml" />
-            </div>
             <div className="row">
                 <p>Start:</p>
                 <input type="date" className="ml" />
@@ -86,7 +95,7 @@ function CreateView() {
                 <input type="time" className="ml" />
             </div>
             {errorMsg !== '' && <p className="error-msg">{errorMsg}</p>}
-            <button className="btn mt" onClick={() => start()}>
+            <button className="btn mt highlight" onClick={() => start()}>
                 Start
             </button>
             {showLoadingScreen && <LoadingScreen />}

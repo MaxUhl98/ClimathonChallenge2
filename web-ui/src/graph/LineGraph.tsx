@@ -13,6 +13,10 @@ function LineGraph({ data }: { data: number[] }) {
                 data: data,
                 type: 'line',
             },
+            {
+                data: data.map((d) => d + 10),
+                type: 'line',
+            },
         ],
     };
 

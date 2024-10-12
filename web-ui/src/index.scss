@@ -140,3 +140,19 @@ input {
     justify-content: center;
     align-items: center;
 }
+
+.dashed {
+    border: 2px dashed white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.highlight {
+    background-color: white;
+    color: #003057;
+    &:hover {
+        background-color: #005194;
+        color: white;
+    }
+}

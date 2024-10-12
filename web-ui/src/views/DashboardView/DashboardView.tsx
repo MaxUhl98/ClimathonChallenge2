@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import './DashboardView.scss';
-import { GenericGraph, getAllGraphNames } from '../../graph/GenericGraph';
+import GraphView from '../../components/GraphView/GraphView';
+import { useState } from 'react';
 /**
  * This is the DashboardView
  * @author cophilot
@@ -8,20 +8,21 @@ import { GenericGraph, getAllGraphNames } from '../../graph/GenericGraph';
  * @created 2024-10-11
  */
 function DashboardView() {
-    const [name, setName] = useState('Bar Plot');
+    const [graphCount, setGraphCount] = useState(1);
 
     const data = [120, 200, 150, 80, 70, 110, 130];
     return (
         <div className="content">
-            <h1>Welcome to the DashboardView!</h1>
-            <select value={name} onChange={(e) => setName(e.target.value)}>
-                {getAllGraphNames().map((name) => (
-                    <option key={name} value={name}>
-                        {name}
-                    </option>
-                ))}
-            </select>
-            <GenericGraph data={data} name={name} />
+            <h1 className="mb">Dashboard</h1>
+            {[...Array(graphCount)].map((_, i) => (
+                <GraphView key={i} data={data} />
+            ))}
+            <button
+                className="btn dashed"
+                style={{ width: '95%' }}
+                onClick={() => setGraphCount(graphCount + 1)}>
+                Add View
+            </button>
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import './Header.scss';
-
+import logoImg from '../../assets/logo.png';
 /**
  * This is a Header component
  * @author cophilot
@@ -9,9 +9,10 @@ import './Header.scss';
 function Header() {
     return (
         <div className="header">
-            <h1 className="logo">
-                ClimateLens<i className="bi bi-search"></i>
-            </h1>
+            <a href="/">
+                <img src={logoImg} alt="logo" />
+            </a>
+
             <div className="links">
                 <a href="/">
                     <i className="bi bi-house"></i>

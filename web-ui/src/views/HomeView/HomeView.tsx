@@ -18,13 +18,20 @@ function HomeView() {
                 data!
             </p>
             <div className="hor">
+                <CardBox icon="bi-zoom-in" heading="Zoom">
+                    Get more information of your clima data!
+                </CardBox>
+                <CardBox icon="bi-body-text" heading="Fill">
+                    Fill your the gaps of your clima data set!
+                </CardBox>
                 <CardBox icon="bi-search" heading="Get more information">
                     Get more information of your clima data!
                 </CardBox>
-                <CardBox>This is a test</CardBox>
-                <CardBox>This is a test</CardBox>
             </div>
-            <button className="btn mt" onClick={() => navigate('/create')}>
+            <button
+                className="btn mt highlight"
+                style={{ width: '98.5%', fontSize: '1.8rem' }}
+                onClick={() => navigate('/create')}>
                 Let's do it!
             </button>
         </div>

@@ -7,8 +7,8 @@
 
     //make background color transparent
     background-color: rgba(0, 0, 0, 0.11);
-    backdrop-filter: blur(10px);
-    --webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    --webkit-backdrop-filter: blur(15px);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -16,6 +16,18 @@
     padding: 0 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 2000;
+
+    img {
+        height: 70px;
+        cursor: pointer;
+        margin-top: -10px;
+        margin-bottom: -10px;
+        transition: all 0.3s;
+        &:hover {
+            scale: 1.1;
+            rotate: 10deg;
+        }
+    }
 }
 
 .logo {
