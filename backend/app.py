@@ -22,10 +22,10 @@ def allowed_file(filename):
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return "<h1>Welcome to ClimateLens!</h1><p>Endpoint: https://127.0.0.1:5000/zoom?startDay=2018-01-01&endDay=2018-01-02&timeResolution=hourly&feature=tas</p>"
 
 @app.route("/zoom", methods=['POST'])
-def post_timeline():
+def post_zoom():
 
 
     # extract params
