@@ -43,4 +43,4 @@ def get_zoom():
     
     result = zoom(start_date, end_date, feature)
     
-    return jsonify('valid data'), 200
+    return jsonify(result), 200
