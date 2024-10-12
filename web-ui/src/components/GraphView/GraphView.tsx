@@ -8,8 +8,11 @@ import './GraphView.scss';
  * @version 1.0.0
  * @created 2024-10-12
  */
-function GraphView({ data }: { data: number[] }) {
-    const [name, setName] = useState('Bar Plot');
+function GraphView({ data 
+    , viewType = 'Bar Plot'
+
+}: { data: number[], viewType?: string }) {
+    const [name, setName] = useState(viewType);
 
     return (
         <div>

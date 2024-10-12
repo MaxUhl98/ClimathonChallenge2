@@ -19,6 +19,8 @@ function CreateView() {
     const [showSpinner, setShowSpinner] = useState(false);
     const [showLoadingScreen, setShowLoadingScreen] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
+    const [previewText, setPreviewText] = useState('');
+    const [feature, setFeature] = useState('Precipitation');
 
     const [zoomLevels, setZoomLevels] = useState(['Yearly', 'Quarterly']);
 
@@ -26,10 +28,21 @@ function CreateView() {
         const file = e.target.files?.[0] || null;
         setSelectedFile(file);
         setShowSpinner(true);
-        ApiService.upload(file as File);
+        ApiService.zoom('2021-01-01', '2021-12-31', 'Temperature').then(
+            (data) => {
+                localStorage.setItem('climatelens-data', JSON.stringify(data));
+            }
+        );
         setTimeout(() => {
             setShowSpinner(false);
             setZoomLevels(['Daily', 'Hourly']);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const text = e.target?.result as string;
+                setPreviewText(text);
+                console.log(text);
+            };
+            reader.readAsText(file as Blob);
         }, 1000);
     };
 
@@ -40,6 +53,8 @@ function CreateView() {
         }
         setErrorMsg('');
         setShowLoadingScreen(true);
+
+        localStorage.setItem('climatelens-feature', feature);
         setTimeout(() => {
             navigate('/dashboard');
         }, 4000);
@@ -48,6 +63,15 @@ function CreateView() {
     return (
         <div className="content">
             <h1>Create a new DataSet</h1>
+            <button className="btn">
+                <i className="bi bi-cloud-arrow-up mr browse"></i>Browse...
+            </button>
+            <input
+                className="btn fup"
+                type="file"
+                onChange={handleFileChange}
+                accept=".csv"
+            />
             {selectedFile && (
                 <div>
                     <p>
@@ -58,15 +82,12 @@ function CreateView() {
                     </p>
                 </div>
             )}
-            <button className="btn">
-                <i className="bi bi-cloud-arrow-up mr browse"></i>Browse...
-            </button>
-            <input
-                className="btn fup"
-                type="file"
-                onChange={handleFileChange}
-                accept=".csv"
-            />
+            {previewText && (
+                <div className="preview">
+                    <h3>Preview:</h3>
+                    <pre>{previewText}</pre>
+                </div>
+            )}
             {showSpinner ? (
                 <Spinner />
             ) : (
@@ -80,13 +101,20 @@ function CreateView() {
                             <option value="3">Station 3</option>
                         </select>
                     </div>
-                    <div className="row">
-                        <p>Parameter: </p>
-                        <input type="text" className="ml" />
-                    </div>
+                    {selectedFile && (
+                        <div className="row">
+                            <p>Feature: </p>
+                            <select
+                                onChange={(e) => setFeature(e.target.value)}>
+                                <option value="2">Precipitation</option>
+                                <option value="1">Temperature</option>
+                                <option value="3">Wind speed</option>
+                            </select>
+                        </div>
+                    )}
                 </>
             )}
-            <div className="row">
+            {/* <div className="row">
                 <p>Start:</p>
                 <input type="date" className="ml" />
                 <input type="time" className="ml" />
@@ -95,7 +123,7 @@ function CreateView() {
                 <p>End:</p>
                 <input type="date" className="ml" />
                 <input type="time" className="ml" />
-            </div>
+            </div> */}
             {errorMsg !== '' && <p className="error-msg">{errorMsg}</p>}
             <button className="btn mt highlight" onClick={() => start()}>
                 Start
