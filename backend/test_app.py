@@ -1,7 +1,9 @@
+from datetime import datetime
 import io
 import os
 import pytest
 from app import app
+from zoom import zoom
 
 @pytest.fixture
 def client():
@@ -28,55 +30,15 @@ def fake_file(content):
 
 # /zoom
 
-def test_no_file(client):
-    response = client.post('/zoom')
-    assert response.status_code == 400
-    assert b'No file given' in response.data
-
-def test_wrong_file_format(client):
-    content = "some dummy file content"
-    data = {
-      'file': (fake_file(content), 'test.txt') #(io.BytesIO(content.encode('utf-8')), 'test.txt')
-    }
-
-    response = client.post('/zoom', content_type='multipart/form-data', data=data)
-
-    assert response.status_code == 400
-    assert b'Invalid file type' in response.data
-
-def test_saves_uploaded_file(client):
-    csv_content = "Name,Age,City\nAlice,30,New York\nBob,25,Los Angeles"
-
-    # Send POST request to the upload route
-    response = client.post('/zoom', content_type='multipart/form-data', data={'file': (fake_file(csv_content), 'test.csv')})
-
-    # Assert that the upload was successful
+def test_zoom_request_success(client):
+    response = client.get('/zoom?startDate=2018-01-01&endDate=2018-01-02&feature=tas')
     assert response.status_code == 200
-    assert b'File successfully uploaded' in response.data
 
-    # Check that the file was saved
-    uploaded_file_path = os.path.join(app.config['UPLOAD_FOLDER'], 'test.csv')
-    assert os.path.exists(uploaded_file_path)
+def test_zoom_for_existing_data():
+    start_date = datetime.strptime('2021-01-02', '%Y-%m-%d')
+    end_date = datetime.strptime('2021-01-03', '%Y-%m-%d')
+    feature = 'tas'
 
-# def test_returns_tas_for_one_day(client):
-#     csv_content = "date,station,height,lat,lon,hurs,sfcWind,clt,ps,rsds,tas,tasmin,tasmax,pr\n20210102,A351,18,54.3,9.32,97.0,2.6,7,10055,275.0,3.6541666666666663,2.7,4.2,5.7"
+    result = zoom(start_date, end_date, feature)
 
-#     form_data={
-#       'file': (fake_file(csv_content), 'test.csv'),
-#       'feature': 'tas',
-#     }
-#     response = client.post('/zoom', 
-#                            content_type='multipart/form-data',
-#                            data=form_data)
-
-#     assert response.status_code == 200
-#     expected_csv = "20210102,A351,3.7,3.8,4.0,4.1,4.2,4.0,3.8,3.7,3.6,3.8,3.9,3.9,4.1,3.8,3.7,3.7,3.5,3.5,3.4,3.3,3.3,3.2,3.0,2.7"
-#     expected_data= { "timeline": [
-#                                   {
-#                                     "feature": "tas",
-#                                     "timestamp": "2021-01-02 00:00:00",
-#                                     "value": 3.7
-#                                   },
-#         ]}
-
-#     assert response.data == expected_csv
+    assert result == []

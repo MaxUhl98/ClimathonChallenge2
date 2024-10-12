@@ -30,4 +30,8 @@ https://climathon2024-8c208f1487fd.herokuapp.com
 
 Get hourly temparature (tas) between January 1st and 2nd:
 
-`https://127.0.0.1:5000/zoom?startDay=2018-01-01&endDay=2018-01-02&timeResolution=hourly&feature=tas`
+`https://127.0.0.1:5000/zoom?startDate=2018-01-01&endDate=2018-01-02&feature=tas`
+
+returns an array of floats:
+
+`[3.8,4.0,4.1 ...]`
